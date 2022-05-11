@@ -1,0 +1,18 @@
+---
+# Source: prometheus-rabbitmq-exporter/templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: prometheus-rabbitmq-exporter
+  labels:
+    app: prometheus-rabbitmq-exporter
+    chart: prometheus-rabbitmq-exporter-1.2.0
+    release: monitor
+spec:
+  selector:
+    matchLabels:
+      app: prometheus-rabbitmq-exporter
+      release: prometheus-rabbitmq-exporter
+  endpoints:
+    - port: rabbitmq-exporter
+      interval: 15s
